@@ -104,4 +104,56 @@ public class Lista {
     public boolean isVazia(){
        return qtd == 0;
     }
+
+    public class Insere{
+    private No primeiro;
+    private No ultimo;
+    
+    private class No {
+        private No proximo;
+        public No(int valor) {
+            this.proximo = null;
+        }
+    }
+    
+    public void inserePrimeiro(int valor) {
+        No novoNo = new No(valor);
+        
+        if (primeiro == null) {
+            primeiro = novoNo;
+            ultimo = novoNo;
+        } else {
+            novoNo.proximo = primeiro;
+            primeiro = novoNo;
+        }
+    }
+    
+    public void insereDepois(No noAtual, int valor) {
+        if (noAtual == null) {
+            // Nó atual não existe
+            return;
+        }
+        
+        No novoNo = new No(valor);
+        
+        novoNo.proximo = noAtual.proximo;
+        noAtual.proximo = novoNo;
+        
+        if (noAtual == ultimo) {
+            ultimo = novoNo;
+        }
+    }
+    
+    public void insereUltimo(int valor) {
+        No novoNo = new No(valor);
+        
+        if (ultimo == null) {
+            primeiro = novoNo;
+            ultimo = novoNo;
+        } else {
+            ultimo.proximo = novoNo;
+            ultimo = novoNo;
+        }
+    }
+}
 }
